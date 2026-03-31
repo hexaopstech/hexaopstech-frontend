@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: #0D0D0F;
+  --color-surface: #111113;
+  --color-border: #1E1E22;
+  --color-accent-red: #E8251A;
+  --color-accent-blue: #00C2FF;
+  --color-accent-green: #00E5A0;
+  --color-accent-purple: #7B5CF0;
+  
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-base text-white antialiased selection:bg-accent-red selection:text-white;
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black uppercase tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-base/70 backdrop-blur-md border-b border-border;
+  }
+  
+  .grid-bg {
+    background-image: linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .border-draw {
+    position: relative;
+  }
+  
+  .border-draw::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+  }
+
+  .mono-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] opacity-60;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
